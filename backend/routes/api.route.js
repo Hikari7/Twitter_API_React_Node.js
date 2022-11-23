@@ -33,6 +33,6 @@ router.get("/tweets", async (req, res, next) => {
 // this route gets the hikari's tweet
 router.get("/", async (req, res, next) => {
   res.send({ message: "Ok api is working 🚀" });
-});ls
+});
 
 module.exports = router;

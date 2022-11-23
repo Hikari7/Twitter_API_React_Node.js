@@ -3,6 +3,7 @@ import logo from "./assets/twitter.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Client } from "twitter-api-sdk";
 
 function App() {
   const [tweets, setTweets] = useState([]);
