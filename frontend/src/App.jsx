@@ -2,20 +2,22 @@
 import logo from "./assets/twitter.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../config/axios.config";
 
 function App() {
   const [tweets, setTweets] = useState([]);
   const [query, setQuery] = useState("100DaysOfCode");
 
-  useEffect(() => getTweets(), [query]);
+  console.log(tweets);
+
+  useEffect(() => getTweets("hk_Vancouver"), [query]);
   // console.log(query);npm
-  function getTweets() {
+  function getTweets(userId) {
     axios
-      .get(`tweets/search/recent/${query}`)
-      .then((response) => {
-        // console.log(tweets);
-        //setTweets(response.data.statuses);
+      // .get(`tweets/search/recent/${query}`)
+      .get(`/tweets/${userId}`)
+      .then(({ data }) => {
+        setTweets(data);
       })
       .catch((error) => console.log(error.message));
   }
@@ -27,12 +29,11 @@ function App() {
   function listTweet() {
     return (
       <ul className="tweets">
-        {tweets.map((tweet, index) => {
+        {tweets?.map((tweet, index) => {
           // console.log(tweet.entities.urls);
-          console.log(tweets);
           return (
             <li key={index} className="tweet">
-              {tweet.text}
+              {tweet.tweet.text}
               {/* {tweet.entities.urls} */}
             </li>
           );
