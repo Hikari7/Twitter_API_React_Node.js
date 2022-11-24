@@ -1,6 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import axios from "axios";
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    host: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        secure: false,
+      },
+    },
+  },
+});
 
 // https://vitejs.dev/config/
 // export default defineConfig({
@@ -14,16 +25,3 @@ import axios from "axios";
 //     },
 //   },
 // });
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    host: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:4000",
-        // changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
-});
