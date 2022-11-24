@@ -1,27 +1,21 @@
-// import { Client } from "twitter-api-sdk";
-import logo from "./assets/twitter.svg";
-import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Client } from "twitter-api-sdk";
-import Tweet from "./components/Tweet";
+
+import logo from "./assets/twitter.svg";
+import "./App.css";
+
+
 
 function App() {
   const [tweets, setTweets] = useState([]);
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState("100DaysOfCode");
 
-  useEffect(() => getTweets(), [query]);
-
-  function getTweets() {
+  useEffect(() => getTweets("hk_Vancouver"), [query]);
+  function getTweets(userId) {
     axios
-      .get("api/tweets", {
-        params: {
-          q: query,
-        },
-      })
-      .then((response) => {
-        console.log(tweets);
-        setTweets(response.data.statuses);
+      .get(`/api/tweets/${userId}`)
+      .then(({ data }) => {
+        setTweets(data);
       })
       .catch((error) => console.log(error.message));
   }
@@ -33,13 +27,12 @@ function App() {
   function listTweet() {
     return (
       <ul className="tweets">
-        {tweets.map((tweet, index) => {
-          // console.log(tweet.entities.urls);
-          console.log(tweet);
+
+        {tweets?.map((item, index) => {
           return (
-            <>
-              <Tweet index={index} tweet={tweet} />
-            </>
+            <li key={index} className="tweet">
+              {item.tweet.text}
+            </li>
           );
         })}
       </ul>
