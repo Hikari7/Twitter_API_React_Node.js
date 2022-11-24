@@ -3,24 +3,19 @@ import logo from "./assets/twitter.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Client } from "twitter-api-sdk";
 
 function App() {
   const [tweets, setTweets] = useState([]);
-  const [query, setQuery] = useState([]);
+  const [query, setQuery] = useState("100DaysOfCode");
 
   useEffect(() => getTweets(), [query]);
-
+  // console.log(query);npm
   function getTweets() {
     axios
-      .get("api/tweets", {
-        params: {
-          q: query,
-        },
-      })
+      .get(`tweets/search/recent/${query}`)
       .then((response) => {
-        console.log(tweets);
-        setTweets(response.data.statuses);
+        // console.log(tweets);
+        //setTweets(response.data.statuses);
       })
       .catch((error) => console.log(error.message));
   }
