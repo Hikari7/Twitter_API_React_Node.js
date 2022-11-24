@@ -5,6 +5,7 @@ import logo from "./assets/twitter.svg";
 import "./App.css";
 
 
+
 function App() {
   const [tweets, setTweets] = useState([]);
   const [query, setQuery] = useState("100DaysOfCode");
@@ -26,6 +27,7 @@ function App() {
   function listTweet() {
     return (
       <ul className="tweets">
+
         {tweets?.map((item, index) => {
           return (
             <li key={index} className="tweet">
@@ -41,6 +43,7 @@ function App() {
     <div className="App">
       <img src={logo} className="logo" alt="twitter" onClick={handleClick} />
       <div className="container">{listTweet()}</div>
+
     </div>
   );
 }
