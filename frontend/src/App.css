@@ -56,4 +56,6 @@ tweets {
   max-height: auto;
 }
 
-
+.white {
+  color: #fff;
+}

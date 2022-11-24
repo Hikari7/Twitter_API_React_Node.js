@@ -28,7 +28,7 @@ const fetchTweets = async (userId) => {
   return tweetList;
 };
 
-app.get("/api/tweets/search/recent/:id", async (req, res) => {
+app.get("/api/tweets/:id", async (req, res) => {
   const data = await fetchTweets(req.params.id);
   res.json(data);
 });
