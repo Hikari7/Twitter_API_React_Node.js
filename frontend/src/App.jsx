@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 
 import logo from "./assets/twitter.svg";
@@ -12,12 +11,14 @@ function App() {
   useEffect(() => getTweets("hk_Vancouver"), [query]);
   function getTweets(userId) {
     axios
-      .get(`/api/tweets/${userId}`)
+      .get(`/api/tweets/search/recent/${userId}`)
       .then(({ data }) => {
         setTweets(data);
       })
       .catch((error) => console.log(error.message));
   }
+
+  console.log(tweets);
 
   function handleClick() {
     console.log("clicked!");
