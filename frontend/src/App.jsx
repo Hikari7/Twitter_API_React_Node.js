@@ -4,6 +4,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Client } from "twitter-api-sdk";
+import Tweet from "./components/Tweet";
 
 function App() {
   const [tweets, setTweets] = useState([]);
@@ -34,12 +35,11 @@ function App() {
       <ul className="tweets">
         {tweets.map((tweet, index) => {
           // console.log(tweet.entities.urls);
-          console.log(tweets);
+          console.log(tweet);
           return (
-            <li key={index} className="tweet">
-              {tweet.text}
-              {/* {tweet.entities.urls} */}
-            </li>
+            <>
+              <Tweet index={index} tweet={tweet} />
+            </>
           );
         })}
       </ul>
@@ -50,6 +50,7 @@ function App() {
     <div className="App">
       <img src={logo} className="logo" alt="twitter" onClick={handleClick} />
       <div className="container">{listTweet()}</div>
+
     </div>
   );
 }
