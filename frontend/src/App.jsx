@@ -4,6 +4,15 @@ import logo from "./assets/twitter.svg";
 import "./App.css";
 import TweetItem from "./components/TweetItem";
 import Button from "./components/Button";
+import { GlobalStyles } from "./styles/GlobalStyles";
+import { Header, HeaderContent } from "./styles/Header";
+import {
+  Container,
+  ContainerTitle,
+  ContainerSearch,
+  FormInput,
+  Buttons
+} from "./styles/Container";
 
 function App() {
   const [tweets, setTweets] = useState([]);
@@ -12,26 +21,16 @@ function App() {
 
   useEffect(() => getTweets("manghnani_11"), [query]);
 
-  //useEffect(() => getTweets(searchUser), [query]);
-
-  // const getUsers = (e) => {
-  //   e.preventDefault();
-  //   setSearchUser(ref.current.value);
-  //   console.log(searchUser);
-  // };
-
   function getTweets(userId) {
     axios
-      .get(`/api/tweets/${userId}`, {
-        params: { text: "100DaysOfCode" },
-      })
-      .then(({ data }) => {
-        setTweets(data);
-      })
-      .catch((error) => console.log(error.message));
+    .get(`/api/tweets/${userId}`, {
+      params: { text: "100DaysOfCode" },
+    })
+    .then(({ data }) => {
+      setTweets(data);
+    })
+    .catch((error) => console.log(error.message));
   }
-
-  // const randomTweets = tweets[Math.floor(Math.random() * 11)];
 
   function listTweet() {
     return (
@@ -62,21 +61,33 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <img src={logo} className="logo" alt="twitter" />
-      <div className="container">
-        <form className="form">
-          <label className="label">
-            <span className="span">Get user favorite user Tweets!</span>
-            <br />
-            <input placeholder=" Search User..." type="text" name="search" />
-          </label>
-          <Button label="Search" onClick={search} />
-          <Button label="Clear" onClick={clear} />
-        </form>
+    <>
+      <GlobalStyles />
+      <Header>
+        <HeaderContent>
+          <img src={logo} className="logo" alt="twitter" />
+          <h1 className="title">Seach Tweets App</h1>
+        </HeaderContent>
+      </Header>
+      <Container>
+        <ContainerTitle Container_title>
+          Get your favorite user Tweets!
+        </ContainerTitle>
+        <ContainerSearch>
+          <FormInput
+            placeholder=" Search User..."
+            type="text"
+            name="search"
+          ></FormInput>
+          <label className="label"></label>
+          <Buttons>
+            <Button label="Search" onClick={search} />
+            <Button label="Clear" onClick={clear} />
+          </Buttons>
+        </ContainerSearch>
         <div>{listTweet()}</div>
-      </div>
-    </div>
+      </Container>
+    </>
   );
 }
 
