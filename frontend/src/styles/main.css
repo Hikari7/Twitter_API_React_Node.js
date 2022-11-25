@@ -6,4 +6,15 @@
   gap: 10px;
   overflow: auto;
   max-height: 800px;
+  fontsize: 36px;
+}
+
+.card-skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 5fr));
+  gap: 10px;
+  border-radius: 2px;
+  padding: 24px;
+  text-align: center;
+  border: 1px #aab8c2 solid;
 }

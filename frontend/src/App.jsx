@@ -12,12 +12,15 @@ import {
   FormInput,
   Buttons,
 } from "./styles/Container";
+import Loading from "./components/Loading";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [tweets, setTweets] = useState([]);
   const [query, setQuery] = useState("100DaysOfCode");
   const ref = useRef();
 
+  // useEffect(() => getTweets("hk_Vancouver"), [query]);
   useEffect(() => getTweets("manghnani_11"), [query]);
 
   function getTweets(userId) {
@@ -34,18 +37,24 @@ function App() {
       .catch((error) => console.log(error.message));
   }
 
-  console.log(tweets);
+  console.log(tweets.length);
 
   function listTweet() {
     return (
       <ul className="tweets">
-        {tweets?.map((item, index) => {
-          return (
-            <>
-              <TweetItem item={item} index={index} />
-            </>
-          );
-        })}
+        {tweets.length > 0 ? (
+          tweets?.map((item, index) => {
+            return (
+              <>
+                <TweetItem item={item} index={index} />
+              </>
+            );
+          })
+        ) : tweets.error ? (
+          tweets.error
+        ) : (
+          <Loading cards={4} />
+        )}
       </ul>
     );
   }
