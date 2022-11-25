@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerTitle = styled.h2`
+  color: #14171a;
   font-size: 24px;
 `;
 

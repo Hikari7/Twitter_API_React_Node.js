@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import logo from "./assets/twitter.svg";
-import "./App.css";
 import TweetItem from "./components/TweetItem";
 import Button from "./components/Button";
 import { GlobalStyles } from "./styles/GlobalStyles";
@@ -11,7 +10,7 @@ import {
   ContainerTitle,
   ContainerSearch,
   FormInput,
-  Buttons
+  Buttons,
 } from "./styles/Container";
 
 function App() {
@@ -23,14 +22,19 @@ function App() {
 
   function getTweets(userId) {
     axios
-    .get(`/api/tweets/${userId}`, {
-      params: { text: "100DaysOfCode" },
-    })
-    .then(({ data }) => {
-      setTweets(data);
-    })
-    .catch((error) => console.log(error.message));
+      .get(`/api/tweets/search/recent/${userId}`, {
+        params: {
+          query: "100DaysOfCode",
+          max_results: 10,
+        },
+      })
+      .then(({ data }) => {
+        setTweets(data);
+      })
+      .catch((error) => console.log(error.message));
   }
+
+  console.log(tweets);
 
   function listTweet() {
     return (

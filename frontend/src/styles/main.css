@@ -1,0 +1,9 @@
+.tweets {
+  margin-top: 36px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 5fr));
+  gap: 10px;
+  overflow: auto;
+  max-height: 800px;
+}
