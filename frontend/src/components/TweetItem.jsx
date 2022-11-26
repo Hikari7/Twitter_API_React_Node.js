@@ -12,6 +12,7 @@ export const Tweet = styled.div`
   padding: 24px;
   text-align: center;
   border: 1px #aab8c2 solid;
+  word-wrap: break-word;
 `;
 
 export const Icons = styled.div`

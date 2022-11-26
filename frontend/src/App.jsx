@@ -21,7 +21,8 @@ function App() {
   const ref = useRef();
 
   // useEffect(() => getTweets("hk_Vancouver"), [query]);
-  useEffect(() => getTweets("manghnani_11"), [query]);
+  //FIFAWorldCup
+  useEffect(() => getTweets("FIFAWorldCup"), [query]);
 
   function getTweets(userId) {
     axios

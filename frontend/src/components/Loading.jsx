@@ -2,9 +2,8 @@ import React from "react";
 import "../styles/main.css";
 
 import "react-loading-skeleton/dist/skeleton.css";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 
-// const Loading = <Skeleton wrapper={Box} count={5} />;
 
 const Loading = ({ cards }) => {
   return Array(cards)
