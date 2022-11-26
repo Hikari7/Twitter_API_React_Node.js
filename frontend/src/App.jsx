@@ -22,7 +22,7 @@ function App() {
 
   // useEffect(() => getTweets("hk_Vancouver"), [query]);
   //FIFAWorldCup
-  useEffect(() => getTweets("FIFAWorldCup"), [query]);
+  useEffect(() => getTweets("hk_Vancouver"), [query]);
 
   function getTweets(userId) {
     axios
