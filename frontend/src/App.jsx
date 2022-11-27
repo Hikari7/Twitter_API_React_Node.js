@@ -28,12 +28,12 @@ function App() {
     axios
       .get(`/api/tweets/search/recent/${userId}`, {
         params: {
-          query: "100DaysOfCode",
+          // query: "100DaysOfCode",
           max_results: 10,
         },
       })
-      .then(({ data }) => {
-        setTweets(data);
+      .then(({ data, maxResults }) => {
+        setTweets(data, maxResults);
       })
       .catch((error) => console.log(error.message));
   }

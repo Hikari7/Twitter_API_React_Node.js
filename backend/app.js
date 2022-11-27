@@ -28,10 +28,21 @@ const fetchTweets = async (userId) => {
   return tweetList;
 };
 
-app.get("/api/tweets/search/recent/:id", async (req, res) => {
-  const data = await fetchTweets(req.params.id);
-  res.json(data);
-});
+app.get(
+  "/api/tweets/search/recent/:id/:max_results",
+
+  async (req, res) => {
+    //const data = await fetchTweets(req.params.id);
+    // const data = await fetchTweets(req.params.id);
+    // let maxResults = req.params.max_results;
+    // res.json({ maxResults });
+
+    const data = await fetchTweets(req.query.id);
+    const maxResults = await fetchTweets(req.query.maxResults);
+
+    res.json({ data, maxResults });
+  }
+);
 
 const PORT = process.env.PORT || 3000;
 
