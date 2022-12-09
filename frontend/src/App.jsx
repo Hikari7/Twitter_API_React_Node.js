@@ -17,23 +17,23 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [tweets, setTweets] = useState([]);
-  const [query, setQuery] = useState("100DaysOfCode");
-  const ref = useRef();
+  // const [query, setQuery] = useState("100DaysOfCode");
+  // const ref = useRef();
 
   // useEffect(() => getTweets("hk_Vancouver"), [query]);
   //FIFAWorldCup
-  useEffect(() => getTweets("hk_Vancouver"), [query]);
+  useEffect(() => getTweets("hk_Vancouver"), []);
 
   function getTweets(userId) {
     axios
       .get(`/api/tweets/search/recent/${userId}`, {
         params: {
-          // query: "100DaysOfCode",
+          query: "100DaysOfCode",
           max_results: 10,
         },
       })
-      .then(({ data, maxResults }) => {
-        setTweets(data, maxResults);
+      .then(({ data }) => {
+        setTweets(data);
       })
       .catch((error) => console.log(error.message));
   }

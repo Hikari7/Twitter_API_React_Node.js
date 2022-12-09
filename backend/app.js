@@ -28,21 +28,27 @@ const fetchTweets = async (userId) => {
   return tweetList;
 };
 
-app.get(
-  "/api/tweets/search/recent/:id/:max_results",
+app.get("/api/tweets/search/recent/:id", async (req, res) => {
+  const data = await fetchTweets(req.params.id);
+  res.json(data);
+});
 
-  async (req, res) => {
-    //const data = await fetchTweets(req.params.id);
-    // const data = await fetchTweets(req.params.id);
-    // let maxResults = req.params.max_results;
-    // res.json({ maxResults });
+// app.get(
+//   "/api/tweets/search/recent/:id/:max_results",
+//   // "/api/tweets/search/recent/:id/:max_results",
 
-    const data = await fetchTweets(req.query.id);
-    const maxResults = await fetchTweets(req.query.maxResults);
+//   async (req, res) => {
+//     const data = await fetchTweets(req.params.id);
+//     // const data = await fetchTweets(req.params.id);
+//     // let maxResults = req.params.max_results;
+//     // res.json({ maxResults });
 
-    res.json({ data, maxResults });
-  }
-);
+//     // const data = await fetchTweets(req.params.id, req.params.max_results);
+//     // const maxResults = await fetchTweets(req.query.maxResults);
+
+//     res.json({ data });
+//   }
+// );
 
 const PORT = process.env.PORT || 3000;
 
